@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <div class="field field-icon-right">
-                                <input type="password" class="input input-big" name="password" placeholder="登录密码" data-validate="required:请填写密码" />
+                                <input type="password" id="password" class="input input-big" name="password" placeholder="登录密码" data-validate="required:请填写密码" />
                                 <span class="icon icon-key margin-small"></span>
                             </div>
                             <span id="password1" style="color:red"></span>
