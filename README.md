@@ -1,2 +1,1 @@
-# finance
-this is a project
+mmall_learning
