@@ -4,8 +4,11 @@ import com.finance.common.ServerResponse;
 import com.finance.pojo.Answer;
 import com.finance.pojo.Message;
 import com.finance.vo.MessageDetailVo;
+import com.finance.vo.MessageManagerItem;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("iMessageService")
 public interface IMessageService {
@@ -38,6 +41,13 @@ public interface IMessageService {
      * @return
      */
     ServerResponse<MessageDetailVo> getMessageDetail(Integer messageId);
+
+
+    /**
+     * 后台接口，用来展示留言信息
+     * @return
+     */
+    ServerResponse<List<MessageManagerItem>> getMessageAll();
 
 
 }

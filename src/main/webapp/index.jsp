@@ -63,7 +63,7 @@
                 <a href="/portal/reg.jsp" class="z">账号注册</a>
                 <a href="/portal/getpass.jsp" class="y">忘记密码</a>
             </div>
-            <button  id="button" class="lang-btn off log-btn">登录</button>
+            <button  type="button" id="button" class="lang-btn off log-btn">登录</button>
             <div class="third-party">
                 <a href="#" class="log-qq icon-qq-round"></a>
                 <a href="#" class="log-qq icon-weixin"></a>
@@ -76,7 +76,6 @@
 </div>
 <script type="text/javascript">
     $("#button").click(function () {
-        alert(1111);
         var username = $("#username").val();
         var password = $("#password").val();
         $.ajax({
@@ -89,7 +88,6 @@
             dataType: "json",
             async: true,
             success: function (data) {
-                alert(data);
                 if(data.status == 0){
                     $(window).attr('location','/portal/index.jsp');
                 }else if(data.status == 1){

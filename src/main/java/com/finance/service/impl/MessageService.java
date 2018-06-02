@@ -3,15 +3,19 @@ package com.finance.service.impl;
 import com.finance.common.ServerResponse;
 import com.finance.dao.AnswerMapper;
 import com.finance.dao.MessageMapper;
+import com.finance.dao.UserMapper;
 import com.finance.pojo.Answer;
 import com.finance.pojo.Message;
+import com.finance.pojo.User;
 import com.finance.service.IMessageService;
 import com.finance.vo.MessageDetailVo;
+import com.finance.vo.MessageManagerItem;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("iMessageService")
@@ -22,6 +26,9 @@ public class MessageService implements IMessageService {
 
     @Autowired
     private AnswerMapper answerMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public ServerResponse<Message> getMessage(Integer id) {
@@ -56,5 +63,22 @@ public class MessageService implements IMessageService {
         messageDetailVo.setReply(answer.getContent());
         messageDetailVo.setReplyTime(answer.getCreateTime());
         return ServerResponse.createBySuccess(messageDetailVo);
+    }
+
+    @Override
+    public ServerResponse<List<MessageManagerItem>> getMessageAll() {
+        List<Message> messages = messageMapper.selectAll();
+        List<MessageManagerItem> result = new ArrayList<>();
+        for(Message m:messages){
+            User user = userMapper.selectByPrimaryKey(m.getUserId());
+            MessageManagerItem item = new MessageManagerItem();
+            item.setId(m.getId());
+            item.setContent(m.getContent());
+            item.setName(user.getUsername());
+            item.setPhone(user.getPhone());
+            item.setTime(m.getCreateTime());
+            result.add(item);
+        }
+        return ServerResponse.createBySuccess(result);
     }
 }

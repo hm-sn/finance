@@ -18,4 +18,7 @@ public interface MessageMapper {
     int updateByPrimaryKey(Message record);
 
     List<Message> selectList(Integer userId);
+
+    List<Message> selectAll();
+
 }

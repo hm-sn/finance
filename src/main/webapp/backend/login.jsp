@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <div class="field field-icon-right">
-                                <input type="password" id="password" class="input input-big" name="password" placeholder="登录密码" data-validate="required:请填写密码" />
+                                <input type="password" id="password2" class="input input-big" name="password" placeholder="登录密码" data-validate="required:请填写密码" />
                                 <span class="icon icon-key margin-small"></span>
                             </div>
                             <span id="password1" style="color:red"></span>
@@ -59,7 +59,8 @@
 <script type="text/javascript">
     $("#button").click(function () {
         var username = $("#username").val();
-        var password = $("#password").val();
+        var password2 = $("#password2").val();
+        alert(password2);
         $.ajax({
             url: "/manage/user/login.do",
             type: "post",
