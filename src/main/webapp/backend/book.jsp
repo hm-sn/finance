@@ -40,6 +40,8 @@
                 <th width="120">留言时间</th>
                 <th>操作</th>
             </tr>
+        </table>
+        <table class="table table-hover text-center">
             <tr>
                 <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
             </tr>
@@ -49,16 +51,17 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        alert("加载数据");
         $.ajax({
             url: "/manage/message/getAll.do",
             type: "get",
             dataType: "json",
             async: true,
             success: function (data) {
-                alert("未进入循环");
-                $.each(data, function (i, item) {
-                    alert(item);
+                alert(data.status);
+                var datas = data.data;
+                console.log(datas);
+                $.each(datas, function (i, item) {
+                    $("#messageList").append("<tr><th>"+datas[i]['id']+"</th><th>"+datas[i]['name']+"</th><th>"+datas[i]['phone']+"</th><th>"+datas[i]['content']+"</th><th>"+datas[i]['time']+"</th><th><a href='#'>删除</a> </th></tr>");
                 })
             }
         })
