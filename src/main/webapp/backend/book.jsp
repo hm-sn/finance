@@ -31,7 +31,7 @@
                 </li>
             </ul>
         </div>
-        <table class="table table-hover text-center">
+        <table class="table table-hover text-center" id="messageList">
             <tr>
                 <th width="120">ID</th>
                 <th>姓名</th>
@@ -48,6 +48,23 @@
 </form>
 <script type="text/javascript">
 
+    $(document).ready(function () {
+        alert("加载数据");
+        $.ajax({
+            url: "/manage/message/getAll.do",
+            type: "get",
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                alert("未进入循环");
+                $.each(data, function (i, item) {
+                    alert(item);
+                })
+            }
+        })
+    });
+
+
     function del(id){
         if(confirm("您确定要删除吗?")){
 
@@ -63,7 +80,7 @@
                 this.checked = true;
             }
         });
-    })
+    });
 
     function DelSelect(){
         var Checkbox=false;
