@@ -40,11 +40,6 @@
             <div class="IT"><a href="#" class="text-zp">全部</a>
                 <dl>
                     <dd><a href="#">全部</a></dd>
-                    <dd><a href="#">经验文章</a></dd>
-                    <dd><a href="#">源文件</a></dd>
-                    <dd><a href="#">设计狮</a></dd>
-                    <dd><a href="#">灵感</a></dd>
-                    <dd><a href="#">话题</a></dd>
                 </dl>
 
             </div>
@@ -118,5 +113,23 @@
 </footer>
 </div>
 </body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: "/category/getAll.do",
+            type: "get",
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                alert(data.data);
+                var datas = data.data;
+                console.log(datas);
+                $.each(datas, function (i, item) {
+                    $(".dll").append("<dd><a href=\"#\">"+datas[i]['title']+"</a></dd>");
+                })
+            }
+        })
+    });
 
+</script>
 </html>

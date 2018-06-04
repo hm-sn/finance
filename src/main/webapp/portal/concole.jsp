@@ -1,4 +1,4 @@
-<%--
+f<%--
   Created by IntelliJ IDEA.
   User: ClanceRen
   Date: 2018/6/1
@@ -24,15 +24,15 @@
         <div class="logo"><img src="images/logo.png" width="auto" height="100%" /></div>
         <div class="nav">
             <ul>
-                <li class="index"><a href="#">首页</a></li>
-                <li><a href="#">咨询</a></li>
+                <li class="index"><a href="index.jsp">首页</a></li>
+                <li><a href="concole.jsp">咨询</a></li>
                 </li>
                 <li><a href="#" class="text-bj nav-80">活动</a>
                     <dl class="nav-80">
                         <dd><a href="#">UTalk</a><i></i></dd>
                         <dd><a href="#">设计大赛</a><i></i></dd>
                     </dl></li>
-                <li><a href="#">招聘</a></li>
+                <li><a href="https://www.lagou.com/jobs/list_%E9%87%91%E8%9E%8D?labelWords=&fromSearch=true&suginput=">招聘</a></li>
             </ul>
         </div>
         <section>
@@ -50,11 +50,6 @@
             <div class="IT"><a href="#" class="text-zp">全部</a>
                 <dl>
                     <dd><a href="#">全部</a></dd>
-                    <dd><a href="#">经验文章</a></dd>
-                    <dd><a href="#">源文件</a></dd>
-                    <dd><a href="#">设计狮</a></dd>
-                    <dd><a href="#">灵感</a></dd>
-                    <dd><a href="#">话题</a></dd>
                 </dl>
 
             </div>
@@ -85,31 +80,31 @@
     </thead>
     <tr>
         <td style="text-align:left; padding-left:20px;">1</td>
-        <td><a href="#">界面太好看了</a></td>
+        <td><a href="consoleitem.jsp">界面太好看了</a></td>
         <td>内容很完美</td>
         <td>2018-07-01</td>
     </tr>
     <tr>
         <td style="text-align:left; padding-left:20px;">2</td>
-        <td><a href="#">界面太好看了</a></td>
+        <td><a href="consoleitem.jsp">界面太好看了</a></td>
         <td>内容很完美</td>
         <td>2018-07-01</td>
     </tr>
     <tr>
         <td style="text-align:left; padding-left:20px;">3</td>
-        <td><a href="#">界面太好看了</a></td>
+        <td><a href="consoleitem.jsp">界面太好看了</a></td>
         <td>内容很完美</td>
         <td>2018-07-01</td>
     </tr>
     <tr>
         <td style="text-align:left; padding-left:20px;">4</td>
-        <td><a href="#">界面太好看了</a></td>
+        <td><a href="consoleitem.jsp">界面太好看了</a></td>
         <td>内容很完美</td>
         <td>2018-07-01</td>
     </tr>
     <tr>
         <td style="text-align:left; padding-left:20px;">5</td>
-        <td><a href="#">界面太好看了</a></td>
+        <td><a href="consoleitem.jsp">界面太好看了</a></td>
         <td>内容很完美</td>
         <td>2018-07-01</td>
     </tr>
@@ -145,5 +140,23 @@
 </footer>
 </div>
 </body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: "/category/getAll.do",
+            type: "get",
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                alert(data.data);
+                var datas = data.data;
+                console.log(datas);
+                $.each(datas, function (i, item) {
+                    $(".dll").append("<dd><a href=\"#\">"+datas[i]['title']+"</a></dd>");
+                })
+            }
+        })
+    });
 
+</script>
 </html>

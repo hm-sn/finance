@@ -4,6 +4,7 @@
 <meta name="author" content="order by dede58.com/" />
 <link  href="css/style.css" rel="stylesheet" type="text/css" />
 <script src="js/animition.js"></script>
+<script src="js/jquery.js"></script>
 <head>
 
 </head>
@@ -15,7 +16,7 @@
             <ul>
                 <li style="width:180px;float:left; list-style:none; text-align: center;position:relative; margin:0px; padding:20px;">智能金融资讯在线系统</li>
                 <li class="index"><a href="#">首页</a></li>
-                <li><a href="#">我的留言</a></li>
+                <li><a href="concole.jsp">我的留言</a></li>
                 </li>
                 <li><a href="#" class="text-bj nav-80">活动</a>
                     <dl class="nav-80">
@@ -38,13 +39,8 @@
             <div class="search"></div>
             <div class="search_input"><input type="text" placeholder="请输入关键字" /></div>
             <div class="IT"><a href="#" class="text-zp">全部</a>
-                <dl>
+                <dl class="dll">
                     <dd><a href="#">全部</a></dd>
-                    <dd><a href="#">国内金融</a></dd>
-                    <dd><a href="#">国际金融</a></dd>
-                    <dd><a href="#">区块链</a></dd>
-                    <dd><a href="#">股票行情</a></dd>
-                    <dd><a href="#">宏观数据</a></dd>
                 </dl>
 
             </div>
@@ -128,5 +124,22 @@
     </div>
 </footer>
 </body>
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: "/category/getAll.do",
+            type: "get",
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                alert(data.data);
+                var datas = data.data;
+                console.log(datas);
+                $.each(datas, function (i, item) {
+                    $(".dll").append("<dd><a href=\"#\">"+datas[i]['title']+"</a></dd>");
+                })
+            }
+        })
+    });
+</script>
 </html>
