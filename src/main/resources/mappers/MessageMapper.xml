@@ -110,7 +110,7 @@
     SELECT
     <include refid="Base_Column_List" />
     from finance_message
-    where userid = #{userId,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
     ORDER BY id asc
   </select>
 

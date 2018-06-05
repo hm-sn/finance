@@ -66,6 +66,12 @@ public class MessageService implements IMessageService {
     }
 
     @Override
+    public ServerResponse insert(Message message) {
+        messageMapper.insert(message);
+        return ServerResponse.createBySuccess();
+    }
+
+    @Override
     public ServerResponse<List<MessageManagerItem>> getMessageAll() {
         List<Message> messages = messageMapper.selectAll();
         List<MessageManagerItem> result = new ArrayList<>();

@@ -60,9 +60,9 @@ f<%--
 </div>
 <div class="bottom_text"><span style="color:#666">欢迎咨询:</span></div>
 <div style="">
-    <form method="post" action="">
+    <form method="post" action="/message/insert.do">
         <div style="margin-left: 40px">标题:<input type="text" name="title" ><br></div>
-        <div style="margin-left: 40px"><p>内容：</p><textarea type="text" name="note" style="height:120px; width: 500px;margin-left: 40px" value=""></textarea>
+        <div style="margin-left: 40px"><p>内容：</p><textarea type="text" name="content" style="height:120px; width: 500px;margin-left: 40px" value=""></textarea>
         </div>
         <div class="field">
             <button style="margin-left:75px; " class="button bg-main icon-check-square-o" type="submit"> 提交</button>
@@ -70,7 +70,7 @@ f<%--
     </form>
 </div>
 <div class="bottom_text"><span style="color:#666">我的咨询:</span></div>
-<table class="custom_tb">
+<table class="custom_tb" id="consolelist">
     <thead>
     <tr>
         <th width="100" style="text-align:left; padding-left:20px;">#</th>
@@ -79,39 +79,7 @@ f<%--
         <th width="10%">更新时间</th>
     </tr>
     </thead>
-    <tr>
-        <td style="text-align:left; padding-left:20px;">1</td>
-        <td><a href="consoleitem.jsp">界面太好看了</a></td>
-        <td>内容很完美</td>
-        <td>2018-07-01</td>
-    </tr>
-    <tr>
-        <td style="text-align:left; padding-left:20px;">2</td>
-        <td><a href="consoleitem.jsp">界面太好看了</a></td>
-        <td>内容很完美</td>
-        <td>2018-07-01</td>
-    </tr>
-    <tr>
-        <td style="text-align:left; padding-left:20px;">3</td>
-        <td><a href="consoleitem.jsp">界面太好看了</a></td>
-        <td>内容很完美</td>
-        <td>2018-07-01</td>
-    </tr>
-    <tr>
-        <td style="text-align:left; padding-left:20px;">4</td>
-        <td><a href="consoleitem.jsp">界面太好看了</a></td>
-        <td>内容很完美</td>
-        <td>2018-07-01</td>
-    </tr>
-    <tr>
-        <td style="text-align:left; padding-left:20px;">5</td>
-        <td><a href="consoleitem.jsp">界面太好看了</a></td>
-        <td>内容很完美</td>
-        <td>2018-07-01</td>
-    </tr>
-    <tr>
-        <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
-    </tr>
+
 </table>
 
 <footer>
@@ -149,12 +117,26 @@ f<%--
             dataType: "json",
             async: true,
             success: function (data) {
-                alert(data.data);
                 var datas = data.data;
                 console.log(datas);
                 $.each(datas, function (i, item) {
                     $(".dll").append("<dd><a href=\"#\">"+datas[i]['title']+"</a></dd>");
                 })
+            }
+        })
+
+        $.ajax({
+            url: "/message/list.do",
+            type: "get",
+            dataTyp:"json",
+            async: true,
+            success: function (data) {
+                var datas = data.data.list;
+                console.log(data.data.list);
+                $.each(datas, function (i, item) {
+                    $("#consolelist").append("<tr><td>"+datas[i]['id']+"</td><td>"+datas[i]['title']+"</td><td>"+datas[i]['content']+"</td><td>2018-06-10</td></tr>");
+                })
+                $("#consolelist").append("<tr><td colspan=\"8\"><div class=\"pagelist\"> <a href=\"\">上一页</a> <span class=\"current\">1</span><a href=\"\">2</a><a href=\"\">3</a><a href=\"\">下一页</a><a href=\"\">尾页</a> </div></td></tr>");
             }
         })
     });
@@ -167,11 +149,9 @@ f<%--
             dataType: "json",
             async: true,
             success: function (data) {
-                alert(data.status);
                 var datas = data.data;
                 console.log(datas);
                 if(data.status == 0) {
-                    alert(text.val());
                     $(window).attr('location', '/portal/list.jsp?keyWord='+text.val());
                 }else {
                     alert(data.message);

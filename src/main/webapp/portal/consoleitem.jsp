@@ -33,7 +33,7 @@
                         <dd><a href="#">UTalk</a><i></i></dd>
                         <dd><a href="#">设计大赛</a><i></i></dd>
                     </dl></li>
-                <li><a href="#">招聘</a></li>
+                <li><a href="https://www.lagou.com/jobs/list_%E9%87%91%E8%9E%8D?labelWords=&fromSearch=true&suginput=">招聘</a></li>
             </ul>
         </div>
         <section>

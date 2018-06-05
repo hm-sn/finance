@@ -42,6 +42,13 @@ public interface IMessageService {
      */
     ServerResponse<MessageDetailVo> getMessageDetail(Integer messageId);
 
+    /**
+     * 插入消息
+     * @param message
+     * @return
+     */
+    ServerResponse insert(Message message);
+
 
     /**
      * 后台接口，用来展示留言信息
