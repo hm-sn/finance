@@ -86,6 +86,6 @@
     select
     <include refid="Base_Column_List" />
     from
-    "finance_category";
+    finance_category;
   </select>
 </mapper>

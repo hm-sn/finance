@@ -25,48 +25,12 @@
     <div class="padding border-bottom">
         <button type="button" class="button border-yellow" onclick="window.location.href='#add'"><span class="icon-plus-square-o"></span> 添加分类</button>
     </div>
-    <table class="table table-hover text-center">
+    <table class="table table-hover text-center" id="categoryList">
         <tr>
             <th width="5%">ID</th>
             <th width="15%">一级分类</th>
             <th width="10%">排序</th>
             <th width="10%">操作</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>中国财经</td>
-            <td>1</td>
-            <td><div class="button-group"> <a class="button border-main" href="cateedit.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,2)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>国际财经</td>
-            <td>1</td>
-            <td><div class="button-group"> <a class="button border-main" href="cateedit.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,2)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>宏观数据</td>
-            <td>1</td>
-            <td><div class="button-group"> <a class="button border-main" href="cateedit.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,2)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>人民币</td>
-            <td>1</td>
-            <td><div class="button-group"> <a class="button border-main" href="cateedit.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,2)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>金融科技</td>
-            <td>1</td>
-            <td><div class="button-group"> <a class="button border-main" href="cateedit.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,2)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>新华信用</td>
-            <td>1</td>
-            <td><div class="button-group"> <a class="button border-main" href="cateedit.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,2)"><span class="icon-trash-o"></span> 删除</a> </div></td>
         </tr>
     </table>
 </div>
@@ -119,11 +83,56 @@
                     <label></label>
                 </div>
                 <div class="field">
-                    <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+                    <button class="button bg-main icon-check-square-o" id="button" type="submit"> 提交</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 </body>
+<script>
+    function del(id){
+        if(confirm("您确定要删除吗?")){
+
+        }
+    }
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "/manage/category/getAll.do",
+            type: "get",
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                var datas = data.data;
+                $.each(datas, function (i, item) {
+                    $("#categoryList").append("<tr><th>"+datas[i]['id']+"</th><th>"+datas[i]['title']+"</th><th>"+datas[i]['content']+"</th><th><a href='#'>删除</a></th></tr>");
+                })
+            }
+        })
+    });
+
+    $("#button").click(function () {
+        var title = $("#title").val();
+        var content = $("#content").val();
+        $.ajax({
+            url: "/manage/item/addItemTitleContent.do",
+            type: "post",
+            data: {
+                title: title,
+                content: content
+            },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if(data.status == 0){
+                    alert("添加新闻成功！");
+                    $(window).attr('location','/backend/column.jsp');
+                }else if(data.status == 1){
+                    $("#password1").text(data.msg);
+                }
+            }
+        })
+    });
+</script>
 </html>
