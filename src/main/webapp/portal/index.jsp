@@ -37,7 +37,7 @@
                 </ul>
             </div>
             <div class="search"></div>
-            <div class="search_input"><input type="text" placeholder="请输入关键字" /></div>
+            <div class="search_input"><input type="text" placeholder="请输入关键字" id="txt"/></div>
             <div class="IT"><a href="#" class="text-zp">全部</a>
                 <dl class="dll">
                     <dd><a href="#">全部</a></dd>
@@ -137,6 +137,23 @@
                 console.log(datas);
                 $.each(datas, function (i, item) {
                     $(".dll").append("<dd><a href=\"#\">"+datas[i]['title']+"</a></dd>");
+                })
+            }
+        })
+    });
+
+    $(".search").click(function(){
+        var text = $("#txt");
+        $.ajax({
+            url: "/item/selectByKeyWord.do?keyWord="+text.val(),
+            type: "get",
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                //alert(data.status);
+                var datas = data.data;
+                console.log(datas);
+                $.each(datas, function (i, item) {
                 })
             }
         })

@@ -30,6 +30,6 @@ public class FinanceItemService implements IFinanceItemService {
     @Override
     public ServerResponse findFinanceItemByKeyWord(String keyWord) {
         List<Item> items = itemMapper.selectItemByKeyword(keyWord);
-        return ServerResponse.createBySuccess(keyWord);
+        return ServerResponse.createBySuccess(items);
     }
 }
