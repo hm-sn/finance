@@ -88,4 +88,19 @@ public class UserService implements IUserService {
         return ServerResponse.createByError();
     }
 
+    /**
+     * 添加用户
+     * @param mname
+     * @param newpass
+     * @return
+     */
+    public ServerResponse add(String mname, String newpass){
+        User user = new User();
+        user.setUsername(mname);
+        user.setPassword(newpass);
+        user.setRole(1);
+        userMapper.insert(user);
+        return ServerResponse.createBySuccess();
+    }
+
 }

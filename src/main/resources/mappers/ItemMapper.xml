@@ -29,7 +29,7 @@
       content, create_time, update_time
       )
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{categoryId,jdbcType=VARCHAR}, 
-      #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      #{content,jdbcType=VARCHAR}, now(), now()
       )
   </insert>
   <insert id="insertSelective" parameterType="com.finance.pojo.Item" >
@@ -107,6 +107,12 @@
   </update>
 
   <select id="selectAll" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from finance_item
+  </select>
+
+  <select id="getAll" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     from finance_item

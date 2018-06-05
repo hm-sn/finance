@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <div class="label">
-                    <label for="sitename">原始密码：</label>
+                    <label id="oldPass" for="sitename">原始密码：</label>
                 </div>
                 <div class="field">
                     <input type="password" class="input w50" id="mpass" name="mpass" size="50" placeholder="请输入原始密码" data-validate="required:请输入原始密码" />
@@ -57,10 +57,38 @@
                     <label></label>
                 </div>
                 <div class="field">
-                    <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+                    <button class="button bg-main icon-check-square-o" id="button" type="button"> 提交</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-</body></html>
+</body>
+<script type="text/javascript">
+    $("#button").click(function () {
+        alert("修改密码成功");
+    //        var oldPass = $("#mpass").val();';
+//        var newPass = $("#newpass").val();
+//        var renewPass = $("#renewpass").val();
+//        $.ajax({
+//            url: "/manage/user/login.do",
+//            type: "post",
+//            data: {
+//                username: username,
+//                password: password2
+//            },
+//            dataType: "json",
+//            async: true,
+//            success: function (data) {
+//                if(data.status == 0){
+//                    alert("成功");
+//                    $(window).attr('location','/backend/index.jsp');
+//                }else if(data.status == 1){
+//                    $("#password1").text(data.msg);
+//                }
+//            }
+//        })
+    });
+
+</script>
+</html>

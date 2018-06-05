@@ -29,7 +29,7 @@
                     <label>标题：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="" name="title" data-validate="required:请输入标题" />
+                    <input type="text" class="input w50" value="" id="title" name="title" data-validate="required:请输入标题" />
                     <div class="tips"></div>
                 </div>
             </div>
@@ -40,12 +40,12 @@
                         <label>分类标题：</label>
                     </div>
                     <div class="field">
-                        <select name="cid" class="input w50">
+                        <select name="cid" class="input w50" id="select">
                             <option value="">请选择分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
+                            <option value="产品分类">产品分类</option>
+                            <option value="颜色分类">颜色分类</option>
+                            <option value="样式分类">样式分类</option>
+                            <option value="内容分类">内容分类</option>
                         </select>
                         <div class="tips"></div>
                     </div>
@@ -56,7 +56,7 @@
                     <label>内容：</label>
                 </div>
                 <div class="field">
-                    <textarea name="content" class="input" style="height:450px; border:1px solid #ddd;"></textarea>
+                    <textarea name="content" class="input" id="content" style="height:450px; border:1px solid #ddd;"></textarea>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -66,11 +66,36 @@
                     <label></label>
                 </div>
                 <div class="field">
-                    <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+                    <button class="button bg-main icon-check-square-o" id="button" type="submit"> 提交</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 
-</body></html>
+</body>
+<script type="text/javascript">
+    $("#button").click(function () {
+        var title = $("#title").val();
+        var content = $("#content").val();
+        alert("添加成功");
+        $.ajax({
+            url: "/manage/item/addItemTitleContent.do",
+            type: "post",
+            data: {
+                title: title,
+                content: content
+            },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if(data.status == 0){
+                    $(window).attr('location','/backend/add.jsp');
+                }else if(data.status == 1){
+                    $("#password1").text(data.msg);
+                }
+            }
+        })
+    });
+
+</script></html>

@@ -36,4 +36,25 @@ public class UserManageController {
         return response;
     }
 
+    @RequestMapping(value = "logout.do",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse<String> logout(HttpSession session){
+        session.removeAttribute(Const.CURRENT_USER);
+        return ServerResponse.createBySuccess();
+    }
+
+    @RequestMapping(value = "update.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse<String> updatePass(String newPass){
+
+        return ServerResponse.createBySuccess();
+    }
+
+    @RequestMapping(value = "add.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse<String> add(String mname, String newpass){
+        iUserService.add(mname, newpass);
+        return ServerResponse.createBySuccess();
+    }
+
 }

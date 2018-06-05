@@ -57,7 +57,6 @@
             dataType: "json",
             async: true,
             success: function (data) {
-                alert(data.status);
                 var datas = data.data;
                 console.log(datas);
                 $.each(datas, function (i, item) {

@@ -20,13 +20,28 @@ public class ItemManageController {
 
     @RequestMapping(value = "addFinanceItem.do",method = RequestMethod.GET)
     @ResponseBody
-    public ServerResponse<List> addFinanceItem(Item item){
+    public ServerResponse addFinanceItem(Item item){
+
         return iFinanceItemService.addFinanceItem(item);
     }
 
+    /**
+     * 后台管理中心新闻管理--增加内容
+     */
+    @RequestMapping(value = "addItemTitleContent.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse addItemTitleContent(String title, String content){
+        Item item = new Item();
+        item.setTitle(title);
+        item.setContent(content);
+        item.setCategoryId("1");
+        return iFinanceItemService.addFinanceItem(item);
+    }
+
+
     @RequestMapping(value = "getAll.do",method = RequestMethod.GET)
     @ResponseBody
-    public ServerResponse<List> getAll(){
+    public ServerResponse getAll(){
         return iFinanceItemService.getAll();
     }
 }

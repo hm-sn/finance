@@ -23,7 +23,10 @@
     <div class="logo margin-big-left fadein-top">
         <h1><img src="images/y.jpg" class="radius-circle rotate-hover" height="50" alt="" />后台管理中心</h1>
     </div>
-    <div class="head-l"><a class="button button-little bg-green" href="" target="_blank"><span class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;<a href="##" class="button button-little bg-blue"><span class="icon-wrench"></span> 清除缓存</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="login.html"><span class="icon-power-off"></span> 退出登录</a> </div>
+    <div class="head-l"><a class="button button-little bg-green" href="" target="_blank"><span class="icon-home"></span> 前台首页</a>
+        &nbsp;&nbsp;<a href="##" class="button button-little bg-blue"><span class="icon-wrench"></span> 清除缓存</a> &nbsp;&nbsp;
+        <button type="button" id="logout" class="button button-little bg-red" value="退出登录"><span class="icon-power-off"></span>退出登录</button>
+        </div>
 </div>
 <div class="leftnav">
     <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
@@ -53,6 +56,19 @@
             $("#a_leader_txt").text($(this).text());
             $(".leftnav ul li a").removeClass("on");
             $(this).addClass("on");
+        })
+    });
+
+    $("#logout").click(function () {
+        $.ajax({
+            url: "/manage/user/logout.do",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                if(data.status == 0){
+                    $(window).attr('location','/backend/login.jsp');
+                }
+            }
         })
     });
 </script>

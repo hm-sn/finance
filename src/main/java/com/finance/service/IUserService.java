@@ -10,4 +10,6 @@ public interface IUserService {
     ServerResponse<String> register(User user);
 
     ServerResponse checkAdminRole(User user);
+
+    ServerResponse add(String mname, String newpass);
 }

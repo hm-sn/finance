@@ -27,7 +27,7 @@
             <div style="height:150px;"></div>
             <div class="media media-y margin-big-bottom">
             </div>
-            <form action="/manage/user/login.do" method="post">
+            <form action="" method="post">
                 <div class="panel loginbox">
                     <div class="text-center margin-big padding-big-top"><h1>后台管理中心</h1></div>
                     <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
@@ -60,18 +60,18 @@
     $("#button").click(function () {
         var username = $("#username").val();
         var password2 = $("#password2").val();
-        alert(password2);
         $.ajax({
             url: "/manage/user/login.do",
             type: "post",
             data: {
                 username: username,
-                password: password
+                password: password2
             },
             dataType: "json",
             async: true,
             success: function (data) {
                 if(data.status == 0){
+                    alert("成功");
                     $(window).attr('location','/backend/index.jsp');
                 }else if(data.status == 1){
                     $("#password1").text(data.msg);
