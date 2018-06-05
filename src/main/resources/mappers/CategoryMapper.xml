@@ -23,10 +23,8 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.finance.pojo.Category" >
-    insert into "finance_category" (id, title, create_time, 
-      update_time)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+    insert into finance_category (title, create_time, update_time)
+    values (#{title,jdbcType=VARCHAR}, now(), now())
   </insert>
   <insert id="insertSelective" parameterType="com.finance.pojo.Category" >
     insert into "finance_category"

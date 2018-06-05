@@ -32,4 +32,10 @@ public class FinanceItemService implements IFinanceItemService {
         List<Item> items = itemMapper.selectItemByKeyword(keyWord);
         return ServerResponse.createBySuccess(items);
     }
+
+    @Override
+    public ServerResponse delete(Integer id) {
+        itemMapper.deleteByPrimaryKey(id);
+        return ServerResponse.createBySuccess();
+    }
 }

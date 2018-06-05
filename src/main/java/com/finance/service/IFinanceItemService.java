@@ -12,4 +12,6 @@ public interface IFinanceItemService {
     ServerResponse getAll();
 
     ServerResponse findFinanceItemByKeyWord(String keyWord);
+
+    ServerResponse delete(Integer id);
 }

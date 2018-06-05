@@ -23,7 +23,7 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public ServerResponse addCategory(Category category) {
-        categoryMapper.insertSelective(category);
+        categoryMapper.insert(category);
         return ServerResponse.createBySuccess();
     }
 }

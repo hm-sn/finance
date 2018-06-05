@@ -65,7 +65,7 @@
                     <label>分类标题：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" name="title" />
+                    <input type="text" class="input w50" id="title" name="title" />
                     <div class="tips"></div>
                 </div>
             </div>
@@ -106,7 +106,7 @@
             success: function (data) {
                 var datas = data.data;
                 $.each(datas, function (i, item) {
-                    $("#categoryList").append("<tr><th>"+datas[i]['id']+"</th><th>"+datas[i]['title']+"</th><th>"+datas[i]['content']+"</th><th><a href='#'>删除</a></th></tr>");
+                    $("#categoryList").append("<tr><th>"+datas[i]['id']+"</th><th>1</th><th>"+datas[i]['title']+"</th><th><a href='#'>删除</a></th></tr>");
                 })
             }
         })
@@ -114,20 +114,19 @@
 
     $("#button").click(function () {
         var title = $("#title").val();
-        var content = $("#content").val();
+        alert(title);
         $.ajax({
-            url: "/manage/item/addItemTitleContent.do",
+            url: "/manage/category/add.do",
             type: "post",
             data: {
-                title: title,
-                content: content
+                title: title
             },
             dataType: "json",
             async: true,
             success: function (data) {
                 if(data.status == 0){
-                    alert("添加新闻成功！");
-                    $(window).attr('location','/backend/column.jsp');
+                    alert("添加分类成功！");
+                    $(window).attr('location','/backend/cate.jsp');
                 }else if(data.status == 1){
                     $("#password1").text(data.msg);
                 }
