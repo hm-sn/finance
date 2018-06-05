@@ -23,4 +23,16 @@ public class CategoryManageController {
     public ServerResponse<List<Category>> findAll(){
         return iCategoryService.getAllCategory();
     }
+
+    /**
+     * 后台管理中心新闻管理--增加内容
+     */
+    @RequestMapping(value = "add.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse addItemTitleContent(String title){
+        Category category = new Category();
+        category.setTitle(title);
+        return iCategoryService.addCategory(category);
+    }
+
 }

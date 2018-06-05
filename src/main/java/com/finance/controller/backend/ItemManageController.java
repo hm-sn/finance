@@ -44,4 +44,12 @@ public class ItemManageController {
     public ServerResponse getAll(){
         return iFinanceItemService.getAll();
     }
+
+
+    @RequestMapping(value = "delete.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse delete(Integer id){
+        return iFinanceItemService.delete(id);
+    }
+
 }
