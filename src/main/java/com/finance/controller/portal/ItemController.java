@@ -23,6 +23,8 @@ public class ItemController {
     private final String pre1 = "帮我找一下";
     private final String next1 = "是什么意思";
 
+    private final String pre2 = "什么是";
+
 
     @RequestMapping(value = "selectByKeyWord.do",method = RequestMethod.GET)
     @ResponseBody
@@ -33,6 +35,8 @@ public class ItemController {
         }else if(keyWord.contains(pre1)&&keyWord.contains(next1)){
             keyWord = keyWord.substring(5);
             keyWord =  keyWord.substring(0,keyWord.length()-5);
+        }else if(keyWord.contains(pre2)){
+            keyWord = keyWord.substring(3);
         }
         return iFinanceItemService.findFinanceItemByKeyWord(keyWord);
     }

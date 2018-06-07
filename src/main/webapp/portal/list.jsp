@@ -45,7 +45,6 @@
                 <dl class="dll">
                     <dd><a href="#">全部</a></dd>
                 </dl>
-
             </div>
         </section>
 
@@ -58,6 +57,8 @@
     <tr>
         <th width="100" style="text-align:left; padding-left:20px;">#</th>
         <th>标题</th>
+        <th>内容</th>
+        <th>分类</th>
         <th width="10%">更新时间</th>
     </tr>
     </thead>
