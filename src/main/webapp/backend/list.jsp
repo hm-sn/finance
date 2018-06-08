@@ -58,7 +58,7 @@
             success: function (data) {
                 var datas = data.data;
                 $.each(datas, function (i, item) {
-                    $("#contentList").append("<tr><th>"+datas[i]['id']+"</th><th>"+datas[i]['title']+"</th><th>世界贸易</th><th><button type='button' onclick='de(id)'>删除</button></th></tr>");
+                    $("#contentList").append("<tr><th>"+datas[i]['id']+"</th><th>"+datas[i]['title']+"</th><th>世界贸易</th><th><button type='button' onclick='de(datas[i]['id'])'>删除</button></th></tr>");
                 })
             }
         })
@@ -67,6 +67,7 @@
 
     //删除
     function de(id){
+        alert(id);
         $.ajax({
             url: "/manage/item/delete.do",
             type: "POST",
